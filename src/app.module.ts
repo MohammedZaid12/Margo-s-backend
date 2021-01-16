@@ -1,3 +1,4 @@
+import { MenuModule } from './menu/menu.module';
 import { User } from './users/user.entit';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -15,14 +16,15 @@ import { MenuService } from './menu/menu.service';
     TypeOrmModule.forRoot(),
     UsersModule,
     AuthModule,
+    MenuModule,
     ConfigModule.forRoot({
       envFilePath: 'app.development.env',
       ignoreEnvFile: true,
       isGlobal: true,
     })
   ],
-  controllers: [AppController, MenuController],
-  providers: [AppService, MenuService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private connection: Connection) { }

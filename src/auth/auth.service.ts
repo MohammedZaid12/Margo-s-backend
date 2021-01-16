@@ -49,8 +49,6 @@ export class AuthService {
     async register(data: User) {
 
         const check = await this.authRepository.findOne({ where: [{ "email": data.email }] });
-        var count = await this.authRepository.count();
-        count++;
         if (check) {
             let errorResponse = new HttpException('User already exists', HttpStatus.UNAUTHORIZED);
             return {
@@ -64,9 +62,7 @@ export class AuthService {
             const hashedPassword = await bcrypt.hash(data.password, 10);
             const user = this.authRepository.create({ ...data, password: hashedPassword});
             this.authRepository.insert(user);
-            const concat = "PO"+user.id;
-            user.phoneNumber = concat;
-            this.authRepository.update();
+        
             return {
                 message:'User added Successfully'
             };
