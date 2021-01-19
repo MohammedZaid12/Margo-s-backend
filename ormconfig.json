@@ -4,9 +4,9 @@
     "port": 3306,
     "username": "root",
     "password": "",
-    "database": "nest",
+    "database": "margos",
     "entities": ["dist/**/*.entit{.ts,.js}"],
-    "migrations": ["dist/migrations/*{.ts,.js}"],
+    "migrations": ["dist/migration/*{.ts,.js}"],
     "migrationsTableName": "migrations_typeorm",
     "migrationsRun": true
   }

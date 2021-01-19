@@ -34,7 +34,11 @@ export class MenuService {
     var menuParentItem = 'PO' + count;
     menu.code = menuParentItem;
     menu.isParent = 1;
-    if(this.menuRepository.save(menu)){
+    const saved = this.menuRepository.save(menu);
+    if(saved){
+      var menuChildItem = 'PO' + (await saved).id;
+      (await saved).code = menuChildItem;
+      this.menuRepository.save(await saved);
         return{
             message : "Menu Item added Successfully"
         }
@@ -58,10 +62,13 @@ export class MenuService {
     var count = await this.menuRepository.count();
     count++;
     const menu = this.menuRepository.create(data);
-    var menuChildItem = 'CO' + count;
-    menu.code = menuChildItem;
+    
     menu.isParent = 0;
-    if(this.menuRepository.save(menu)){
+    const savedMenu =this.menuRepository.save(menu);
+    if(savedMenu){
+      var menuChildItem = 'CO' + (await savedMenu).id;
+      (await savedMenu).code = menuChildItem;
+      this.menuRepository.save(await savedMenu);
         return{
             message : "Menu Item added Successfully"
         }

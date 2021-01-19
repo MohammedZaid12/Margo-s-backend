@@ -4,5 +4,5 @@ export class MenuChildDto {
     price:number;
     description:string;
     parentCode:string;
-    isParent:number = 0;
+    isParent:number;
   }
