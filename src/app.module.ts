@@ -1,3 +1,4 @@
+import { JwtStrategy } from './auth/jwt.startegy';
 import { MenuModule } from './menu/menu.module';
 import { User } from './users/user.entit';
 import { Module } from '@nestjs/common';
@@ -24,7 +25,7 @@ import { MenuService } from './menu/menu.service';
     })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule {
   constructor(private connection: Connection) { }

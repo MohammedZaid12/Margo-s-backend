@@ -81,7 +81,6 @@ export class AuthService {
     let user: JwtPayload = { email };
     let accessToken = this.jwtService.sign(user);
     return accessToken;
-    
   }
 
   async findByPayload({ email }: any): Promise<User> {
